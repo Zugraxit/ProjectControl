@@ -16,30 +16,32 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("all/{userId}")]
-        public async Task<List<object>> GetProgectsByUser(int userId, bool isAdmin) 
+        public async Task<List<object>> GetProgectsByUser(int userId, bool isAdmin)
         {
             List<object> result = new List<object>();
             if (isAdmin)
             {
-                result = data.Projects
+                result = await data.Projects
                     .Where(p => p.IdAdmin == userId)
                     .Select(p => new { p.IdProject, p.Title, p.Description })
-                    .ToList<object>();
+                    .ToListAsync<object>();
             }
             else
             {
-                result = data.Users
+                result = await data.Users
                     .Where(u => u.IdUser == userId)
                     .Include(u => u.ProjectsNavigation)
                     //.SelectMany(u => u.ProjectsNavigation)
-                    .Select(p => new { 
-                        p.Name, 
+                    .Select(p => new {
+                        p.Name,
                         Projects = p.Projects
-                            .Select(p => new { p.IdProject, p.Title, p.Description }).ToList<object>() 
+                            .Select(p => new { p.IdProject, p.Title, p.Description }).ToList<object>()
                     })
-                    .ToList<object>();
+                    .ToListAsync<object>();
             }
             return result;
         }
+
+        
     }
 }
