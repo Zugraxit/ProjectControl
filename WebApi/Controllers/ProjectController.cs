@@ -23,6 +23,7 @@ namespace WebApi.Controllers
             {
                 result = await data.Projects
                     .Where(p => p.IdAdmin == userId)
+                    .Include(p => p.AdminNavigation)
                     .Select(p => new { p.IdProject, p.Title, p.Description })
                     .ToListAsync<object>();
             }
@@ -32,7 +33,8 @@ namespace WebApi.Controllers
                     .Where(u => u.IdUser == userId)
                     .Include(u => u.ProjectsNavigation)
                     //.SelectMany(u => u.ProjectsNavigation)
-                    .Select(p => new {
+                    .Select(p => new
+                    {
                         p.Name,
                         Projects = p.Projects
                             .Select(p => new { p.IdProject, p.Title, p.Description }).ToList<object>()
@@ -43,7 +45,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost("create")]
-        public async void Create(int idAdmin, string title, string description) 
+        public async void Create(int idAdmin, string title, string description)
         {
             data.Projects.Add(new Models.Project
             {
