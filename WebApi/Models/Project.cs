@@ -13,9 +13,9 @@ public partial class Project
 
     public string? Description { get; set; }
 
-    public virtual User IdAdminNavigation { get; set; } = null!;
+    public virtual User AdminNavigation { get; set; } = null!;
 
     public virtual ICollection<TaskItem> Tasks { get; set; } = new List<TaskItem>();
 
-    public virtual ICollection<User> IdUsers { get; set; } = new List<User>();
+    public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

@@ -15,9 +15,9 @@ public partial class User
 
     public string? ImagePath { get; set; }
 
-    public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
+    public virtual ICollection<Project> ProjectsNavigation { get; set; } = new List<Project>();
 
     public virtual ICollection<TaskItem> Tasks { get; set; } = new List<TaskItem>();
 
-    public virtual ICollection<Project> IdProjects { get; set; } = new List<Project>();
+    public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
 }

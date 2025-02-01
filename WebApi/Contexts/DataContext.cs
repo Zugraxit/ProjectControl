@@ -43,11 +43,11 @@ public partial class DataContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("title");
 
-            entity.HasOne(d => d.IdAdminNavigation).WithMany(p => p.Projects)
+            entity.HasOne(d => d.AdminNavigation).WithMany(p => p.ProjectsNavigation)
                 .HasForeignKey(d => d.IdAdmin)
                 .HasConstraintName("fk_project_admin");
 
-            entity.HasMany(d => d.IdUsers).WithMany(p => p.IdProjects)
+            entity.HasMany(d => d.Users).WithMany(p => p.Projects)
                 .UsingEntity<Dictionary<string, object>>(
                     "ProjectHasUser",
                     r => r.HasOne<User>().WithMany()
