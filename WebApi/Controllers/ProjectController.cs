@@ -42,6 +42,16 @@ namespace WebApi.Controllers
             return result;
         }
 
-        
+        [HttpPost("create")]
+        public async void Create(int idAdmin, string title, string description) 
+        {
+            data.Projects.Add(new Models.Project
+            {
+                IdAdmin = idAdmin,
+                Title = title,
+                Description = description
+            });
+            data.SaveChanges();
+        }
     }
 }
