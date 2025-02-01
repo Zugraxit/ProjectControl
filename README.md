@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/fcc499ee-5304-4793-a913-ea0b963a5631)# ProjectControl
+# ProjectControl
 ProjectControl - простая система управления задачами, позволяющая небольшим командам организовывать работу, отслеживать статус задач и фиксировать прогресс.
 
 ## Инструкции по установке
