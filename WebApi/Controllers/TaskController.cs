@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Emit;
 using WebApi.Contexts;
 
 namespace WebApi.Controllers
@@ -23,7 +24,7 @@ namespace WebApi.Controllers
                 IdUser = idUser,
                 Title = title
             });
-            data.SaveChanges();
+            await data.SaveChangesAsync();
         }
     }
 }

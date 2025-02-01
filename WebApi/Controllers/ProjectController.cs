@@ -64,5 +64,26 @@ namespace WebApi.Controllers
                 .Select(p => p.Tasks)
                 .ToListAsync<object>();
         }
+
+        [HttpPut("inviteUser")]
+        public async void InviteUser(int idProject, int idUser)
+        {
+            try
+            {
+                data.Projects.Include(u => u.Users)
+                    .Where(p => p.IdProject == idProject)
+                    .FirstOrDefault().Users
+                        .Add(data.Users
+                            .Where(u => u.IdUser == idUser)
+                            .FirstOrDefault()
+                            );
+                await data.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Приглашение не работает");
+            }
+        }
     }
 }
