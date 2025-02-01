@@ -31,8 +31,7 @@ namespace WebApi.Controllers
             {
                 result = await data.Users
                     .Where(u => u.IdUser == userId)
-                    .Include(u => u.ProjectsNavigation)
-                    //.SelectMany(u => u.ProjectsNavigation)
+                    .Include(u => u.ProjectsNavigation)                    
                     .Select(p => new
                     {
                         p.Name,
@@ -54,6 +53,16 @@ namespace WebApi.Controllers
                 Description = description
             });
             data.SaveChanges();
+        }
+
+        [HttpGet("getTasks")]
+        public async Task<object> GetTasks(int idProject) 
+        {
+            return await data.Projects
+                .Include(p => p.Tasks)
+                .Where(p => p.IdProject == idProject)
+                .Select(p => p.Tasks)
+                .ToListAsync<object>();
         }
     }
 }
