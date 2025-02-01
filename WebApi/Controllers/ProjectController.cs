@@ -16,12 +16,11 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("all/{userId}")]
-        public async Task<List<object>> GetProgectsByUser(int userId, bool isAdmin)
+        public async Task<object> GetProgectsByUser(int userId, bool isAdmin)
         {
-            List<object> result = new List<object>();
             if (isAdmin)
             {
-                result = await data.Projects
+                return await data.Projects
                     .Where(p => p.IdAdmin == userId)
                     .Include(p => p.AdminNavigation)
                     .Select(p => new { p.IdProject, p.Title, p.Description })
@@ -29,7 +28,7 @@ namespace WebApi.Controllers
             }
             else
             {
-                result = await data.Users
+                return await data.Users
                     .Where(u => u.IdUser == userId)
                     .Include(u => u.ProjectsNavigation)                    
                     .Select(p => new
@@ -38,9 +37,8 @@ namespace WebApi.Controllers
                         Projects = p.Projects
                             .Select(p => new { p.IdProject, p.Title, p.Description }).ToList<object>()
                     })
-                    .ToListAsync<object>();
+                    .FirstOrDefaultAsync<object>();
             }
-            return result;
         }
 
         [HttpPost("create")]
@@ -84,6 +82,12 @@ namespace WebApi.Controllers
             {
                 Console.WriteLine("Приглашение не работает");
             }
+        }
+
+        [HttpGet("{idProject}")]
+        public async Task<object> GetProjectInfo(int idProject)
+        {
+            return data.Projects.Include(u => u.Users).ThenInclude(u => u.Tasks).Where(p => p.IdProject == idProject).FirstOrDefaultAsync<object>();
         }
     }
 }
