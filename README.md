@@ -18,6 +18,9 @@ ProjectControl - простая система управления задача
 ![Окно регистрации](https://sun9-27.userapi.com/impg/FPaCt6wPGoTbzq0Ucc5XGwBliX5YT-pDnH2xDg/OWa4Gh5k_VY.jpg?size=1372x710&quality=95&sign=d6ac2f03945bf6765662b5dfb9f8f0cb&type=album)
 ![Окно регистрации - Заполнено](https://sun9-57.userapi.com/impg/O63bz4pISfzW5OQyvqn261Cgw4poXQ0nhzz-Ww/z1-x01Mq774.jpg?size=1366x690&quality=95&sign=898867ac18a0849d40314fe3afaa92fb&type=album)
 ![Окно авторизации - После регистрации](https://sun9-46.userapi.com/impg/UkBBwmmASKaUveFoDPdBSLI1flEbifyUfwV-iQ/TvAkTH3woS0.jpg?size=1368x696&quality=95&sign=daa4b8f2360ef86d3b9dbd8c463447f4&type=album)
+Для авторизации небоходимо на странице авторизации заполнить поля Логин и Пароль (например, CommonUser и qwerty123), после чего нажать на кнопку "Войти". После авторизации вас перенаправит на главную страницу.
+![Окно авторизации - Заполнено](https://sun9-6.userapi.com/impg/Zf7aa08aTXJxzf1n8qW12cOfdeTDxp5SW2xfkA/L_FNM_6UuuU.jpg?size=1346x567&quality=95&sign=a25d48c8f5f8025271ff58d085de2826&type=album)
+
 ## Команда проекта
 * Богданов Максим - лучший UseCase-дизайнер, опытный DungeonMaster, разработчик БД, редактор прекрасного README
 * Стрельцов Владислав - опытный Flutter-разработчик, разработчик Front-End
