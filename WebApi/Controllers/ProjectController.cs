@@ -60,7 +60,7 @@ namespace WebApi.Controllers
                 .Include(p => p.Tasks)
                 .Where(p => p.IdProject == idProject)
                 .Select(p => p.Tasks)
-                .ToListAsync<object>();
+                .FirstOrDefaultAsync<object>();
         }
 
         [HttpPut("inviteUser")]
