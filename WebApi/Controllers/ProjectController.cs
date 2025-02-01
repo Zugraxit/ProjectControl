@@ -23,7 +23,7 @@ namespace WebApi.Controllers
             {
                 result = data.Projects
                     .Where(p => p.IdAdmin == userId)
-                    //.Select(p => new { p.IdProject,  })
+                    .Select(p => new { p.IdProject, p.Title, p.Description })
                     .ToList<object>();
             }
             else
@@ -32,7 +32,11 @@ namespace WebApi.Controllers
                     .Where(u => u.IdUser == userId)
                     .Include(u => u.ProjectsNavigation)
                     //.SelectMany(u => u.ProjectsNavigation)
-                    .Select(p => new { p.Name, p.Projects })
+                    .Select(p => new { 
+                        p.Name, 
+                        Projects = p.Projects
+                            .Select(p => new { p.IdProject, p.Title, p.Description }).ToList<object>() 
+                    })
                     .ToList<object>();
             }
             return result;
